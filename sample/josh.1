@@ -1,0 +1,76 @@
+.TH JOSH 1 "May 2025" "josh v1.0" "User Commands"
+.SH NAME
+josh \- run configurable tasks from a yaml file
+.SH SYNOPSIS
+.B josh
+[\fITASK\fR] [\fIOPTIONS\fR]
+.SH DESCRIPTION
+.B josh
+runs task from a file called
+.B joshfile
+
+it runs shell commands defined as named tasks, optionally with reporting and async execution.
+
+.SH USAGE
+.TP
+.B josh
+runs the first task defined in the joshfile
+
+.TP
+.B josh \fITASK\fR
+runs a specific named task
+
+.TP
+.B josh --init
+creates an example configuration file in the current directory
+
+.TP
+.B josh -h, --h
+displays help information
+
+.TP
+.B josh --man
+displays this man page
+
+.SH CONFIGURATION
+all configuration is defined in a YAML file named
+.B joshfile
+in the working directory.
+
+each task can contain the following keys:
+.TP
+.B cmds
+a list of shell commands to run for the task. These are run in the order specified.
+
+.TP
+.B report
+if true, logs the time each command takes to complete.
+
+.TP
+.B direct
+if true, runs commands directly via Go’s exec interface instead of the shell. May improve performance.
+
+.SH EXAMPLE
+example joshfile:
+
+.EX
+tasks:
+  build:
+    report: true
+    direct: true
+    cmds:
+      - "go build -o josh"
+
+  install:
+    report: true
+    cmds:
+      - "go build -o josh"
+      - "cp ./josh ~/.local/bin/"
+.EE
+
+.SH AUTHOR
+written by https://github.com/if-not-nil.
+
+.SH SEE ALSO
+yaml(5), sh(1), go(1)
+

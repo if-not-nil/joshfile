@@ -1,0 +1,12 @@
+tasks:
+  build:
+    report: true
+    direct: true
+    cmds:
+    - "go build -o josh"
+  install:
+    report: true
+    cmds:
+    - "go build -o josh"
+    - "cp ./josh ~/.local/bin/"
+    - "cp ./josh.1 ~/.local/man/"

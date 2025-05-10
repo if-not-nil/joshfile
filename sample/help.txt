@@ -1,0 +1,8 @@
+joshfile
+
+usage:
+`josh` to run the first task
+`josh [task]` to run a specific task
+`josh --init` to make an example config
+`josh -h` or `josh --h` to show help
+`josh --man` to show this

@@ -1,0 +1,27 @@
+tasks:
+  main:
+    cmds: # runs stuff in sh
+      - "echo hello && echo world"
+  direct:
+    direct: true # bypasses sh
+    cmds:
+      - "echo hello && echo world"
+  async:
+    async: true # runs them concurrently. remember that they'll finish out of order
+    report: true # reports time elapsed
+    cmds:
+      - "echo notice how they all finish at the same time?"
+      - "sleep 2"
+      - "sleep 2"
+      - "sleep 2"
+  silent:
+    silent: true # runs them silently 
+    cmds:
+      - "echo you wont see this"   
+  error:
+    cmds: # errors are reported in a special manner
+      - "sleep f"
+  silenterr:
+    silent: true # errors are still reported in silent mode by design
+    cmds:
+      - "this-is-silent"
